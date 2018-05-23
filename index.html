@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <!-- <meta http-equiv="Content-Security-Policy" content="default-src 'self' data: gap: http://fund.eastmoney.com/ 'unsafe-eval'; style-src 'self' 'unsafe-inline'; media-src *;script-src * 'unsafe-inline'">  -->
+        <!-- <meta http-equiv="Content-Security-Policy" content="default-src 'self' data: gap: http://j5.dfcfw.com/ 'unsafe-eval'; style-src 'self' 'unsafe-inline'; media-src *;script-src * 'unsafe-inline'">   -->
+        <!-- <meta http-equiv="Content-Security-Policy" content="default-src 'self' data: gap: http://fund.eastmoney.com/ 'unsafe-eval'; style-src 'self' 'unsafe-inline'; media-src *;script-src * 'unsafe-inline'">   -->
+        <!-- <meta http-equiv="Content-Security-Policy" content="default-src 'self' data: gap: http://fund.eastmoney.com/ 'unsafe-eval'; style-src 'self' 'unsafe-inline'; media-src *;script-src * 'unsafe-inline'">    -->
+        <style>
+            body{
+                width: 605px;
+                margin: 0 auto;
+                margin-top: 200px;
+            }
+            table{
+                width: 100%;
+                margin-top: 10px;
+                border-collapse:collapse;
+                text-align: center;
+            }
+            table thead th{
+                line-height: 1.42857;
+                padding: 8px;
+                vertical-align: middle;
+                border: 1px solid #DDD;
+                background-color: #F5F5F6;
+            }
+            table tbody td{
+                border: 1px solid #e7eaec;
+                line-height: 1.42857;
+                padding: 8px;
+                vertical-align: middle;
+            }
+            input{
+                background-color: #FFF;
+                background-image: none;
+                border: 1px solid #e5e6e7;
+                border-radius: 1px;
+                color: inherit;
+                display: block;
+                padding: 6px 12px;
+                -webkit-transition: border-color .15s ease-in-out 0s,box-shadow .15s ease-in-out 0s;
+                transition: border-color .15s ease-in-out 0s,box-shadow .15s ease-in-out 0s;
+                width: 100%;
+                font-size: 14px;
+                box-sizing: border-box;
+            }
+            label > span{
+                display: inline-block;
+            }
+            form > button{
+                background-color: #1ab394;
+                border-color: #1ab394;
+                color: #FFF;
+                padding: 5px 10px;
+                font-size: 12px;
+                line-height: 1.5;
+                border-radius: 3px;
+                border: none;
+                cursor: pointer;
+                font-size: 14px;
+                outline: none;
+                margin-left: -1px;
+            }
+        </style>
+    </head>
+    <body>
+        <form>
+            <!-- <label>类型：            
+                <select>
+                    <option selected>基金</option>
+                </select>
+            </label> -->
+            <label>
+                代码：<span style="width:85px;"><input id="code" type="text" placeholder="基金代码"/></span>
+            </label>
+            <label>
+                买入时间(可选): 
+                <span style="width: 100px;"><input id="buyingTime" type="text" placeholder="1970-01-01"/></span>
+            </label>
+            <label>
+                买入金额(可选): 
+                <span style="width: 100px;"><input id="price" type="text" placeholder="买入金额"/></span>
+            </label>
+            <button id="add" type="button">添加</button>
+            <button id="reset" type="button">重置</button>
+        </form>
+        <table>
+            <thead>
+                <tr>
+                    <th>代码</th>
+                    <th>基金简称</th>
+                    <th>买入时间</th>
+                    <th>买入金额</th>
+                    <th>操作</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>102322</td>
+                    <td>测试基金diamante</td>
+                    <td>2018-05-21</td>
+                    <td>1000.00</td>
+                </tr>
+            </tbody>
+        </table>
+    </body>
+    <script src='js/jquery.min.js'></script>
+    <script src="js/index.js"></script>
+</html>

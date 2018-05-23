@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            width: 600px;
+            height: 270px;
+        }
+
+        table {
+            font-family: "Lucida Sans Unicode", "Lucida Grande", Sans-Serif;
+            font-size: 12px;
+            width: 580px;
+            text-align: left;
+            border-collapse: collapse;
+            border: 1px solid #69c;
+            margin: 10px;
+            cursor: default;
+            text-align: center;
+        }
+
+        table th {
+            font-weight: normal;
+            font-size: 14px;
+            color: #039;
+            border-bottom: 1px dashed #69c;
+            padding: 12px 17px;
+            white-space: nowrap;
+        }
+
+        table td {
+            color: #669;
+            padding: 7px;
+            white-space: nowrap;
+        }
+
+        table tbody tr:hover td {
+            color: #339;
+            background: #d0dafd;
+            cursor: pointer;
+        }
+        .not .icon{
+            display: none;
+        }
+        .icon{
+            float: right;
+            background-image: url(http://j5.dfcfw.com/image/201705/20170510113610.png);
+            width: 16px;
+            height: 20px;
+            margin-top: -2px;
+            margin-left: 5px;
+            transform: scale(0.6);
+        }
+        .up .icon{
+            background-position-y: -381px;
+        }
+        .down .icon{
+            background-position-y: -409px;
+        }
+        .del.icon{
+            background-position-y: -351px;
+            display: none;
+            position: absolute;
+            margin-top: -20px;
+            right: 20px;
+        }
+        table tbody tr:hover .del.icon{
+            display: block;
+        }
+        #update-time{
+            float: right;
+            color: #888;
+            font-size: 12px;
+        }
+        .head{
+            line-height: 36px;
+            height: 36px;
+            padding: 0 10px;
+        }
+        .add-bar{
+            height: 36px;
+            display: inline-block;
+            padding: 4px 0;
+        }
+        .add-bar > input{
+            height: 28px;
+            padding: 0px 4px;
+            width: 80px;
+            border: 1px solid #ccc;
+            /* border-radius: 5px; */
+            outline: none;
+            text-align: center;
+        }
+        .add-bar > button ,#close-chart{
+            height: 28px;
+            text-align: center;
+            line-height: 28px;
+            padding: 0 10px;
+            position: relative;
+            top: 2px;
+            margin-left: 10px;
+        }
+        .tip{
+            font-size: 12px;
+            color: #FF0000;
+            text-align: center;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+        }
+        .small{
+            display: block;
+        }
+        a:link, a:focus, a:visited{
+            color: #080808;
+        }
+        a{
+            text-decoration: none;
+        }
+        a:hover{
+            text-decoration: underline;
+        }
+        #charts{
+            position: absolute;
+            top: 0px;
+            left: 600px;
+            width: 600px;
+            height: 200px;
+            background: white;
+            transition: 0.5s all;
+
+        }
+        #charts-body{
+            width: 420px;
+            height: 200px;
+            background: white; 
+            border: 1px solid #69c;
+            margin: 10px;
+            float: left;
+        }
+        .dataNums{
+            font-size: 26px;
+            line-height: 47px;
+        }
+        #charts-info{
+            float: left;
+            margin: 10px;
+        }
+        #charts-info span{
+            color: #4071b6;
+        }
+        #charts-info .dataNums span{
+            /* color: red; */
+            color: #080808;
+        }
+        .ui-font-middle {
+            font-size: 16px;
+        }
+        #charts-info .red .dataNums span{
+            color: #FF0000;
+        }
+        #charts-info .green .dataNums span{
+            color: green;
+        }
+        .loading{
+            width: 600px;
+            height: 200px;
+            line-height: 200px;
+            font-size: 24px;
+            text-align: center;
+        }
+        </style>
+    </head>
+    <body>
+        <div class="head">
+            <span class="add-bar"><input id="id-code" placeholder="基金代码" /><button id="add-btn">添加</button></span>
+            <span id="update-time"></span>
+        </div>
+        <table id="table">
+            <thead>
+                <tr>
+                    <th>代码</th>
+                    <th>基金简称</th>
+                    <!-- <th>昨日单位净值</th> -->
+                    <th>昨日增长</th>
+                    <th>当前涨幅</th>
+                    <th>操作</th>
+                </tr>
+            </thead>
+            <tbody></tbody>
+        </table>
+        <div id="charts">
+            <div class="charts-head" style="height: 36px;">
+                <button id="close-chart">返回</button>
+            </div>
+            <div class="loading">
+                数据加载中，请稍后...
+            </div>
+            <div id="charts-body"></div>
+            <div id="charts-info">
+                <dl class="dataItem01">
+                    <dt>
+                        <p><span class="ui-color-blue"><span class="sp01">买入净值</span></p>
+                    </dt>
+                    <dd class="dataNums"><span class="ui-font-large ui-color-red ui-num">1.2100</span></dd>
+                </dl>
+                <dl class="dataItem02">
+                    <dt>
+                        <p><span class="ui-color-blue"><span class="sp01">昨日净值</span></p>
+                    </dt>
+                    <dd class="dataNums"><span class="ui-font-large ui-color-red ui-num">1.2100</span> <span class="ui-font-middle ui-color-red ui-num">0.67%</span></dd>
+                </dl>
+                <dl class="dataItem03">
+                    <dt>
+                        <p><span class="ui-color-blue"><span class="sp01">盈利亏损</span></p>
+                    </dt>
+                    <dd class="dataNums"><span class="ui-font-large ui-color-red ui-num">1.2100</span> <span class="ui-font-middle ui-color-red ui-num">元</span></dd>
+                </dl>
+            </div>
+        </div>
+        <div class="tip">数据信息仅供参考，具体收益金额受到手续费影响。</div>
+        <script src="js/jquery.min.js"></script>
+        <script src="js/echarts.common.min.js"></script>
+        <script src="js/app.js"></script>
+        <script src="js/charts.js"></script>
+    </body>
+</html>
